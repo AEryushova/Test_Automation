@@ -41,10 +41,6 @@ public class BuyingTourByCreditTest {
     }
     @Test
     void buyingTourByCredit() {
-        Configuration.holdBrowserOpen = true;
-        open("http://localhost:8080/");
-        var tourPurchaseHomePage= new TourPurchaseHomePage();
-        buyingByCredit = tourPurchaseHomePage.getBuyingByCredit();
         buyingByCredit.fillingNumberCardField(DataGenerator.generateNumberApprovedStatusCard());
         buyingByCredit.fillingMonthField(DataGenerator.generateCurrentMonth());
         buyingByCredit.fillingYearField(DataGenerator.generateCurrentYear());
@@ -69,10 +65,6 @@ public class BuyingTourByCreditTest {
     }
     @Test
     void buyingTourByCreditOwnerNoName() {
-        Configuration.holdBrowserOpen = true;
-        open("http://localhost:8080/");
-        var tourPurchaseHomePage= new TourPurchaseHomePage();
-        buyingByCredit = tourPurchaseHomePage.getBuyingByCredit();
         buyingByCredit.fillingNumberCardField(DataGenerator.generateNumberApprovedStatusCard());
         buyingByCredit.fillingMonthField(DataGenerator.generateCurrentMonth());
         buyingByCredit.fillingYearField(DataGenerator.generateCurrentYear());

@@ -12,7 +12,7 @@ public class DataBaseUtils {
     @SneakyThrows
     public void clearAllData() {
         var runner = new QueryRunner();
-        var clearCreditRequest = " DELETE FROM credit_request_entity";
+        var clearCreditRequest = "DELETE FROM credit_request_entity";
         var clearOrder = "DELETE FROM order_entity";
         var clearPayment = "DELETE FROM payment_entity";
         try (
