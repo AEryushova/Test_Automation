@@ -19,7 +19,16 @@ public class BuyingByCredit {
     private final SelenideElement continueButton = $$("button").findBy(text("Продолжить"));
     private final SelenideElement approvedBankOperation = $x("//div[contains(text(),'Операция одобрена Банком')]");
     private final SelenideElement declinedBankOperation = $x("//div[contains(text(),'Ошибка! Банк отказал в проведении операции')]");
-    private final SelenideElement errors = $(".input__sub");
+    private final SelenideElement errorSubNumberCard = $$(".input__top").findBy(text("Номер карты")).parent().find(".input__sub");
+    private final SelenideElement errorSubMonth = $$(".input__top").findBy(text("Месяц")).parent().find(".input__sub");
+    private final SelenideElement errorSubYear = $$(".input__top").findBy(text("Год")).parent().find(".input__sub");
+    private final SelenideElement errorSubOwner = $$(".input__top").findBy(text("Владелец")).parent().find(".input__sub");
+    private final SelenideElement errorSubCVC = $$(".input__top").findBy(text("CVC/CVV")).parent().find(".input__sub");
+
+    private final SelenideElement cardNumberValue=$x("//input[@value='4444 4444 4444 4441']");
+    private final SelenideElement monthValue=$x("//input[@value='07']");
+    private final SelenideElement yearValue=$x("//input[@value='23']");
+    private final SelenideElement cvcValue=$x("//input[@value='404']");
 
     public BuyingByCredit() {
         numberCard.shouldBe(Condition.visible);
@@ -67,19 +76,36 @@ public class BuyingByCredit {
         declinedBankOperation.shouldBe(Condition.visible, Duration.ofSeconds(25));
     }
 
-    public void getErrorFormat() {
-        errors.shouldHave(Condition.text("Неверный формат"));
+    public void errorsFieldNumberCard(String errorText) {
+        errorSubNumberCard.shouldHave(Condition.text(errorText));
     }
 
-    public void getErrorRequiredField() {
-        errors.shouldHave(Condition.text("Поле обязательно для заполнения"));
+    public void errorsFieldMonth(String errorText) {
+        errorSubMonth.shouldHave(Condition.text(errorText));
     }
 
-    public void getErrorCardExpiryDate() {
-        errors.shouldHave(Condition.text("Неверно указан срок действия карты"));
+    public void errorsFieldYear(String errorText) {
+        errorSubYear.shouldHave(Condition.text(errorText));
     }
 
-    public void getErrorCardExpired() {
-        errors.shouldHave(Condition.text("Истёк срок действия карты"));
+    public void errorsFieldOwner(String errorText) {
+        errorSubOwner.shouldHave(Condition.text(errorText));
     }
+
+    public void errorsFieldCVC(String errorText) {
+        errorSubCVC.shouldHave(Condition.text(errorText));
+    }
+    public void cardNumberSetValue(){
+        cardNumberValue.shouldBe(Condition.visible);
+    }
+    public void monthSetValue(){
+        monthValue.shouldBe(Condition.visible);
+    }
+    public void yearSetValue(){
+        yearValue.shouldBe(Condition.visible);
+    }
+    public void cvcSetValue(){
+        cvcValue.shouldBe(Condition.visible);
+    }
+
 }

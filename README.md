@@ -19,8 +19,13 @@
 4. Запуск тестов :
    - С использованием **PostgreSQL**: _./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"_
    - С использованием **MySQL**: _./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"_
-
+5. Генерация отчета Allure командой : _./gradlew allureserve_
 
 - Остановка SUT : _CTRL + C_
 - Остановка контейнеров : _docker-compose stop_  
 - Удаление контейнеров : _docker-compose down_
+
+## Документация :
+- [План автоматизации]()
+- [Отчет по итогам тестирования]()
+- [Отчет по итогам автоматизации]()

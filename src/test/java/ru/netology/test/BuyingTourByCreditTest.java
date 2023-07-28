@@ -83,12 +83,12 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateNoNameOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorFormat();
+        buyingByCredit.errorsFieldNumberCard("Неверный формат");
     }
     @Test
     void buyingTourByCreditNumberCardBoundaryMaxTest() {
         buyingByCredit.fillingNumberCardField(DataGenerator.generateNumberBoundaryCard());
-        $x("//input[@value='4444 4444 4444 4441']").shouldBe(Condition.visible);
+        buyingByCredit.cardNumberSetValue();
     }
     @Test
     void buyingTourByCreditMonthBoundaryMinTest() {
@@ -98,13 +98,13 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorFormat();
+        buyingByCredit.errorsFieldMonth("Неверный формат");
     }
 
     @Test
     void buyingTourByCreditMonthBoundaryMaxTest() {
         buyingByCredit.fillingMonthField(DataGenerator.generateBoundaryMonth());
-        $x("//input[@value='07']").shouldBe(Condition.visible);
+        buyingByCredit.monthSetValue();
     }
     @Test
     void buyingTourByCreditYearBoundaryMinTest() {
@@ -114,12 +114,12 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorFormat();
+        buyingByCredit.errorsFieldYear("Неверный формат");
     }
     @Test
     void buyingTourByCreditYearBoundaryMaxTest() {
         buyingByCredit.fillingYearField(DataGenerator.generateBoundaryYear());
-        $x("//input[@value='23']").shouldBe(Condition.visible);
+        buyingByCredit.yearSetValue();
     }
     @Test
     void buyingTourByCreditOwnerBoundaryMinTest() {
@@ -129,7 +129,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateIncompleteOwner());
         buyingByCredit .fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit .subFormWithCardDetails();
-        buyingByCredit.getErrorFormat();
+        buyingByCredit.errorsFieldOwner("Неверный формат");
     }
     @Test
     void buyingTourByCreditOwnerBoundaryMaxTest() {
@@ -139,7 +139,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateBoundaryOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorFormat();
+        buyingByCredit.errorsFieldOwner("Неверный формат");
     }
     @Test
     void buyingTourByCreditOwnerMaxBoundaryTest() {
@@ -159,12 +159,12 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateIncompleteCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorFormat();
+        buyingByCredit.errorsFieldCVC("Неверный формат");
     }
     @Test
     void buyingTourByCreditCVCBoundaryMaxTest() {
         buyingByCredit.fillingCVCField(DataGenerator.generateBoundaryCVC());
-        $x("//input[@value='404']").shouldBe(Condition.visible);
+        buyingByCredit.cvcSetValue();
     }
     @Test
     void validationRequiredFieldsEmptyFieldCardNumber() {
@@ -173,7 +173,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldNumberCard("Поле обязательно для заполнения");
     }
     @Test
     void validationRequiredFieldsEmptyFieldMonth() {
@@ -182,7 +182,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldMonth("Поле обязательно для заполнения");
     }
 
     @Test
@@ -192,7 +192,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldYear("Поле обязательно для заполнения");
     }
     @Test
     void validationRequiredFieldsEmptyFieldOwner() {
@@ -201,7 +201,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingYearField(DataGenerator.generateCurrentYear());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldOwner("Поле обязательно для заполнения");
     }
     @Test
     void validationRequiredFieldsEmptyFieldCVC() {
@@ -210,12 +210,16 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingYearField(DataGenerator.generateCurrentYear());
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldCVC("Поле обязательно для заполнения");
     }
     @Test
     void submittingFormWithEmptyFieldsWithNoData(){
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldNumberCard("Поле обязательно для заполнения");
+        buyingByCredit.errorsFieldMonth("Поле обязательно для заполнения");
+        buyingByCredit.errorsFieldYear("Поле обязательно для заполнения");
+        buyingByCredit.errorsFieldOwner("Поле обязательно для заполнения");
+        buyingByCredit.errorsFieldCVC("Поле обязательно для заполнения");
     }
     @Test
     void buyingTourByCreditDeclinedStatusCard() {
@@ -249,7 +253,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldNumberCard("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesCyrillicCardNumberField(){
@@ -259,7 +263,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldNumberCard("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSymbolCardNumberField(){
@@ -269,7 +273,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldNumberCard("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSpaceCardNumberField(){
@@ -279,7 +283,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldNumberCard("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesNonExistentMonthField(){
@@ -289,7 +293,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorCardExpiryDate();
+        buyingByCredit.errorsFieldMonth("Неверно указан срок действия карты");
     }
     @Test
     void enteringElapsedMonthCurrentYearMonthField(){
@@ -299,7 +303,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorCardExpiryDate();
+        buyingByCredit.errorsFieldMonth("Неверно указан срок действия карты");
     }
     @Test
     void enteringInvalidValuesLatinMonthField(){
@@ -309,7 +313,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldMonth("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesCyrillicMonthField(){
@@ -319,7 +323,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldMonth("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSymbolMonthField(){
@@ -329,7 +333,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldMonth("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSpaceMonthField(){
@@ -339,7 +343,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldMonth("Поле обязательно для заполнения");
     }
     @Test
     void enteringPreviousYearAfterCurrentOneYearField(){
@@ -349,7 +353,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorCardExpired();
+        buyingByCredit.errorsFieldYear("Истёк срок действия карты");
     }
     @Test
     void enteringInvalidValuesLatinYearField(){
@@ -359,7 +363,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldYear("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesCyrillicYearField(){
@@ -369,7 +373,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldYear("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSymbolYearField(){
@@ -379,7 +383,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldYear("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSpaceYearField(){
@@ -389,7 +393,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldYear("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesCyrillicOwnerField(){
@@ -399,7 +403,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateInvalidRuOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldOwner("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesNumbersOwnerField(){
@@ -409,7 +413,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateNumberOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldOwner("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSymbolOwnerField(){
@@ -419,7 +423,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateSymbolOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldOwner("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSpaceOwnerField(){
@@ -429,7 +433,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateSpaceOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldOwner("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesLatinCVCField(){
@@ -439,7 +443,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateInvalidEnCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldCVC("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesCyrillicCVCField(){
@@ -449,7 +453,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateInvalidRuCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldCVC("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSymbolCVCField(){
@@ -459,7 +463,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateSymbolCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldCVC("Поле обязательно для заполнения");
     }
     @Test
     void enteringInvalidValuesSpaceCVCField(){
@@ -469,7 +473,7 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingOwnerField(DataGenerator.generateValidEnOwner());
         buyingByCredit.fillingCVCField(DataGenerator.generateSpaceCVC());
         buyingByCredit.subFormWithCardDetails();
-        buyingByCredit.getErrorRequiredField();
+        buyingByCredit.errorsFieldCVC("Поле обязательно для заполнения");
     }
     }
 
