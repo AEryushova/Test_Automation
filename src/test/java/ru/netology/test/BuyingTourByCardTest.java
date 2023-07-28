@@ -41,10 +41,6 @@ public class BuyingTourByCardTest {
 
     @Test
     void buyingTourByCardApprovedStatusCard() {
-        Configuration.holdBrowserOpen = true;
-        open("http://localhost:8080/");
-        var tourPurchaseHomePage = new TourPurchaseHomePage();
-        buyingByCard = tourPurchaseHomePage.getBuyingByCard();
         buyingByCard.fillingNumberCardField(DataGenerator.generateNumberApprovedStatusCard());
         buyingByCard.fillingMonthField(DataGenerator.generateCurrentMonth());
         buyingByCard.fillingYearField(DataGenerator.generateCurrentYear());
