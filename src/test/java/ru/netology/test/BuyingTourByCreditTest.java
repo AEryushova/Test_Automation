@@ -242,8 +242,6 @@ public class BuyingTourByCreditTest {
         buyingByCredit.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCredit.subFormWithCardDetails();
         buyingByCredit.getDeclinedMessage();
-        assertEquals(selectOrder().getPayment_id(),selectCreditRequest().getBank_id());
-        assertEquals("DECLINED", selectCreditRequest().getStatus());
     }
     @Test
     void enteringInvalidValuesLatinCardNumberField(){

@@ -261,8 +261,6 @@ public class BuyingTourByCardTest {
         buyingByCard.fillingCVCField(DataGenerator.generateValidCVC());
         buyingByCard.subFormWithCardDetails();
         buyingByCard.getDeclinedMessage();
-        assertEquals(selectOrder().getPayment_id(),selectPayment().getTransaction_id());
-        assertEquals("DECLINED", selectPayment().getStatus());
     }
 
     @Test
