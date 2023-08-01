@@ -26,6 +26,6 @@
 - Удаление контейнеров : _docker-compose down_
 
 ## Документация :
-- [План автоматизации]()
-- [Отчет по итогам тестирования]()
-- [Отчет по итогам автоматизации]()
+- [План автоматизации](https://github.com/AEryushova/Test_Automation/blob/main/docs/Plan.md)
+- [Отчет по итогам тестирования](https://github.com/AEryushova/Test_Automation/blob/main/docs/Report.md)
+- [Отчет по итогам автоматизации](https://github.com/AEryushova/Test_Automation/blob/main/docs/Summary.md)
