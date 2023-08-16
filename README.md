@@ -4,7 +4,7 @@
 - Git
 - Java 11
 - ОС : **Windows 10 64-bit**
-- IDE : **IntelliJ IDEA **
+- IDE : **IntelliJ IDEA**
 - Браузер : **Google Chrome**
 - Docker
 - DBeaver
